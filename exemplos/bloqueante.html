@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Operação Bloqueante</title>
+</head>
+<body>
+	<h1>Exemplo de Operação Bloqueante em JavaScript</h1>
+	<ul id="myList"></ul>
+	<button id="btn1">Operação Bloqueante</button>
+	<button id="btn2">Operação Não Bloqueante</button>
+	<script>
+		const list = {
+			element: document.querySelector('#myList'),
+			addItem(text) {
+				const item = document.createElement('li');
+				item.textContent = text;
+				this.element.appendChild(item);
+			}
+		};
+
+		function operacaoBloqueante() {
+			// Simulando uma operação bloqueante
+			let i = 0;
+			while (i < 5000000000) {
+				i++;
+			}
+
+			list.addItem('Operação Bloqueante concluída');
+		}
+
+		function operacaoNaoBloqueante() {
+			list.addItem('Operação Não Bloqueante concluída');
+		}
+
+		document.querySelector('#btn1').onclick = operacaoBloqueante;
+		document.querySelector('#btn2').onclick = operacaoNaoBloqueante;
+	</script>
+</body>
+</html>
