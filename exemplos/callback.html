@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Operação Assincrona usando setTimeOut com Callbacks em JavaScript</title>
+</head>
+<body>
+	<h1>Exemplo de Operação Assincrona em JavaScript</h1>
+	<ul id="myList"></ul>
+
+	<button id="btn1">Operação Assincrona</button>
+	<button id="btn2">Operação Não Bloqueante</button>
+
+	<script>
+    const btn1 = document.querySelector('#btn1');
+    const btn2 = document.querySelector('#btn2');
+		const list = {
+			element: document.querySelector('#myList'),
+			addItem(text) {
+				const item = document.createElement('li');
+				item.textContent = text;
+				this.element.appendChild(item);
+			}
+		};
+
+		function operacaoAssincrona() {
+      function callback(){
+        list.addItem('Operação Assincrona concluída')
+      }
+			setTimeout(callback, 5000);
+		}
+
+		function operacaoNaoBloqueante() {
+			list.addItem('Operação Não Bloqueante concluída');
+		}
+
+		btn1.onclick = operacaoAssincrona;
+		btn2.onclick = operacaoNaoBloqueante;
+	</script>
+</body>
+</html>
